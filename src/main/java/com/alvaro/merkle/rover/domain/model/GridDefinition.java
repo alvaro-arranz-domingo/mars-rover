@@ -11,17 +11,10 @@ public class GridDefinition {
     private final int width;
 
     public GridDefinition(int height, int width) {
-        checkValidArgs(height, width);
+        checkArePositive(height, width);
 
         this.height = height;
         this.width = width;
-    }
-
-    private void checkValidArgs(int height, int width) {
-        if (height <= 0)
-            throw new IllegalArgumentException("The Grid cannot be defined with 0 or negative height");
-        if (width <= 0)
-            throw new IllegalArgumentException("The Grid cannot be defined with 0 or negative width");
     }
 
     public int getHeight() {
@@ -52,5 +45,12 @@ public class GridDefinition {
     @Override
     public int hashCode() {
         return Objects.hash(height, width);
+    }
+
+    private void checkArePositive(int height, int width) {
+        if (height <= 0)
+            throw new IllegalArgumentException("The Grid cannot be defined with 0 or negative height");
+        if (width <= 0)
+            throw new IllegalArgumentException("The Grid cannot be defined with 0 or negative width");
     }
 }
