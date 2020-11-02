@@ -12,9 +12,6 @@ public class GridLocation {
     private final GridOrientation orientation;
 
     public GridLocation(int x, int y, GridOrientation orientation) {
-
-        checkPositiveOrZero(x, y);
-
         this.x = x;
         this.y = y;
         this.orientation = orientation;
@@ -54,12 +51,5 @@ public class GridLocation {
     @Override
     public int hashCode() {
         return Objects.hash(x, y, orientation);
-    }
-
-    private void checkPositiveOrZero(int x, int y) {
-        if (x < 0)
-            throw new IllegalArgumentException("Location cannot be initialized with a negative value for x");
-        if (y < 0)
-            throw new IllegalArgumentException("Location cannot be initialized with a negative value for y");
     }
 }

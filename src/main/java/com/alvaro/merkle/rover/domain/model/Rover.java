@@ -18,40 +18,38 @@ public class Rover {
     public GridDefinition getGridDefinition() { return grid; }
 
     public void moveForward() {
+        moveForward(1);
+    }
+
+    public void moveBackwards() {
+        moveForward(-1);
+    }
+
+    private void moveForward(int direction) {
 
         switch (location.getOrientation()) {
             case N:
-                location = new GridLocation(location.getX(), location.getY() + 1, location.getOrientation());
+                location = new GridLocation(location.getX(), location.getY() + direction, location.getOrientation());
                 break;
             case S:
-                location = new GridLocation(location.getX(), location.getY() - 1, location.getOrientation());
+                location = new GridLocation(location.getX(), location.getY() - direction, location.getOrientation());
                 break;
             case E:
-                location = new GridLocation(location.getX() + 1, location.getY(), location.getOrientation());
+                location = new GridLocation(location.getX() + direction, location.getY(), location.getOrientation());
                 break;
             case W:
-                location = new GridLocation(location.getX() - 1, location.getY(), location.getOrientation());
+                location = new GridLocation(location.getX() - direction, location.getY(), location.getOrientation());
                 break;
         }
 
-        fixEdgeWrapping();
+        if (!grid.isInsideLimits(location))
+            location = grid.wrapLocation(location);
     }
 
     private void checkGridLimits(GridDefinition grid, GridLocation location) {
-        if (location.getX() >= grid.getWidth())
-            throw new IllegalArgumentException("Rover X coordinate is out of bounds: " + location.toString() + ", " + grid.toString());
-        if (location.getY() >= grid.getHeight())
-            throw new IllegalArgumentException("Rover Y coordinate is out of bounds: " + location.toString() + ", " + grid.toString());
+
+        if (!grid.isInsideLimits(location))
+            throw new IllegalArgumentException("Rover location is out of bounds: " + location.toString() + ", " + grid.toString());
     }
 
-    private void fixEdgeWrapping() {
-        if (location.getX() == grid.getWidth())
-            location = new GridLocation(0, location.getY(), location.getOrientation());
-        else if (location.getX() < 0)
-            location = new GridLocation(grid.getWidth() - 1, location.getY(), location.getOrientation());
-        else if (location.getY() == grid.getHeight())
-            location = new GridLocation(location.getX(), 0, location.getOrientation());
-        else if (location.getY() < 0)
-            location = new GridLocation(location.getY(), grid.getHeight() - 1, location.getOrientation());
-    }
 }
