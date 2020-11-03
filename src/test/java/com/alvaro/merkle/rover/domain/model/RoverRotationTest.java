@@ -47,4 +47,45 @@ public class RoverRotationTest {
 
         assertEquals(GridOrientation.N, rover.getCurrentLocation().getOrientation());
     }
+
+    @Test
+    public void rotateLeft_N() {
+
+        var rover = new Rover(grid, new GridLocation(0,0, GridOrientation.N));
+
+        rover.rotateLeft();
+
+        assertEquals(GridOrientation.W, rover.getCurrentLocation().getOrientation());
+    }
+
+    @Test
+    public void rotateLeft_E() {
+
+        var rover = new Rover(grid, new GridLocation(0,0, GridOrientation.E));
+
+        rover.rotateLeft();
+
+        assertEquals(GridOrientation.N, rover.getCurrentLocation().getOrientation());
+    }
+
+    @Test
+    public void rotateLeft_S() {
+
+        var rover = new Rover(grid, new GridLocation(0,0, GridOrientation.S));
+
+        rover.rotateLeft();
+
+        assertEquals(GridOrientation.E, rover.getCurrentLocation().getOrientation());
+    }
+
+    @Test
+    public void rotateLeft_W() {
+
+        var rover = new Rover(grid, new GridLocation(0,0, GridOrientation.W));
+
+        rover.rotateLeft();
+
+        assertEquals(GridOrientation.S, rover.getCurrentLocation().getOrientation());
+    }
+
 }

@@ -68,4 +68,21 @@ public class Rover {
                 break;
         }
     }
+
+    public void rotateLeft() {
+        switch (location.getOrientation()) {
+            case N:
+                location = new GridLocation(location.getX(), location.getY(), GridOrientation.W);
+                break;
+            case S:
+                location = new GridLocation(location.getX(), location.getY(), GridOrientation.E);
+                break;
+            case E:
+                location = new GridLocation(location.getX(), location.getY(), GridOrientation.N);
+                break;
+            case W:
+                location = new GridLocation(location.getX(), location.getY(), GridOrientation.S);
+                break;
+        }
+    }
 }
