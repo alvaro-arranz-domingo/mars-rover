@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class GridDefinitionTest {
+public class GridLimitsTest {
 
     @Test
     public void creation() {
 
-        var grid = new GridDefinition(3, 5);
+        var grid = new GridLimits(3, 5);
 
         assertEquals(3, grid.getHeight());
         assertEquals(5, grid.getWidth());
@@ -17,21 +17,21 @@ public class GridDefinitionTest {
 
     @Test
     public void negativeHeight() {
-        assertThrows(IllegalArgumentException.class, () -> new GridDefinition(-1, 5));
+        assertThrows(IllegalArgumentException.class, () -> new GridLimits(-1, 5));
     }
 
     @Test
     public void negativeWidth() {
-        assertThrows(IllegalArgumentException.class, () -> new GridDefinition(5, -1));
+        assertThrows(IllegalArgumentException.class, () -> new GridLimits(5, -1));
     }
 
     @Test
     public void zeroHeight() {
-        assertThrows(IllegalArgumentException.class, () -> new GridDefinition(0, 5));
+        assertThrows(IllegalArgumentException.class, () -> new GridLimits(0, 5));
     }
 
     @Test
     public void zeroWidth() {
-        assertThrows(IllegalArgumentException.class, () -> new GridDefinition(5, 0));
+        assertThrows(IllegalArgumentException.class, () -> new GridLimits(5, 0));
     }
 }

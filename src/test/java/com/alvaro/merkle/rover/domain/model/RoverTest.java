@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RoverTest {
 
-    private final GridDefinition grid = new GridDefinition(5, 5);
+    private final GridLimits grid = new GridLimits(5, 5);
 
     @Test
     public void roverInitialization() {

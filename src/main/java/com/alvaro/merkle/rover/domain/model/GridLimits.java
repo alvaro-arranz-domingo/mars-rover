@@ -5,12 +5,12 @@ import java.util.Objects;
 /**
  * Value object representing the limits of a Grid
  */
-public class GridDefinition {
+public class GridLimits {
 
     private final int height;
     private final int width;
 
-    public GridDefinition(int height, int width) {
+    public GridLimits(int height, int width) {
         checkArePositive(height, width);
 
         this.height = height;
@@ -57,7 +57,7 @@ public class GridDefinition {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GridDefinition that = (GridDefinition) o;
+        GridLimits that = (GridLimits) o;
         return height == that.height &&
                 width == that.width;
     }

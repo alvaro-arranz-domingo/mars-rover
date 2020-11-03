@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RoverRotationTest {
 
-    private final GridDefinition grid = new GridDefinition(5, 5);
+    private final GridLimits grid = new GridLimits(5, 5);
 
     @Test
     public void rotateRight_N() {

@@ -2,10 +2,10 @@ package com.alvaro.merkle.rover.domain.model;
 
 public class Rover {
 
-    private final GridDefinition grid;
+    private final GridLimits grid;
     private GridLocation location;
 
-    public Rover(GridDefinition grid, GridLocation location) {
+    public Rover(GridLimits grid, GridLocation location) {
 
         checkGridLimits(grid, location);
 
@@ -15,7 +15,7 @@ public class Rover {
 
     public GridLocation getCurrentLocation() { return location; }
 
-    public GridDefinition getGridDefinition() { return grid; }
+    public GridLimits getGridDefinition() { return grid; }
 
     public void moveForward() {
         moveForward(1);
@@ -46,7 +46,7 @@ public class Rover {
             location = grid.wrapLocation(location);
     }
 
-    private void checkGridLimits(GridDefinition grid, GridLocation location) {
+    private void checkGridLimits(GridLimits grid, GridLocation location) {
 
         if (!grid.isInsideLimits(location))
             throw new IllegalArgumentException("Rover location is out of bounds: " + location.toString() + ", " + grid.toString());
