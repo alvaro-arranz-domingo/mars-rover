@@ -48,7 +48,7 @@ public class Rover {
                 break;
         }
 
-        if (!grid.getLimits().isInsideLimits(newLocation)) {
+        if (grid.getLimits().isOutsideLimits(newLocation)) {
             newLocation = grid.getLimits().wrapLocation(newLocation);
         }
 
@@ -101,7 +101,7 @@ public class Rover {
 
     private void checkGridLimits(GridLimits grid, RoverLocation location) {
 
-        if (!grid.isInsideLimits(location))
+        if (grid.isOutsideLimits(location))
             throw new IllegalArgumentException("Rover location is out of bounds: " + location.toString() + ", " + grid.toString());
     }
 

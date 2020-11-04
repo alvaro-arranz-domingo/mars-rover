@@ -25,11 +25,11 @@ public class GridLimits {
         return width;
     }
 
-    public boolean isInsideLimits(RoverLocation location) {
-        return location.getX() >= 0
-                && location.getX() < getWidth()
-                && location.getY() >= 0
-                && location.getY() < getHeight();
+    public boolean isOutsideLimits(RoverLocation location) {
+        return location.getX() < 0
+                || location.getX() >= getWidth()
+                || location.getY() < 0
+                || location.getY() >= getHeight();
     }
 
     public RoverLocation wrapLocation(RoverLocation location) {
