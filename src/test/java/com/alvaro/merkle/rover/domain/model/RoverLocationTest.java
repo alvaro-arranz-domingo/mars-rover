@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GridLocationTest {
+public class RoverLocationTest {
 
    @Test
    public void creation() {
 
-        var location = new GridLocation(3, 4, GridOrientation.N);
+        var location = new RoverLocation(3, 4, GridOrientation.N);
 
         assertEquals(3, location.getX());
         assertEquals(4, location.getY());

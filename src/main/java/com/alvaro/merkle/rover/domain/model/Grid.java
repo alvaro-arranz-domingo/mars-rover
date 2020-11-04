@@ -1,11 +1,19 @@
 package com.alvaro.merkle.rover.domain.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Grid {
 
     private final GridLimits limits;
-    private final GridObstacles obstacles;
+    private final Set<Obstacle> obstacles;
 
-    public Grid(GridLimits limits, GridObstacles obstacles) {
+    public Grid(GridLimits limits) {
+        this.limits = limits;
+        this.obstacles = new HashSet<>();
+    }
+
+    public Grid(GridLimits limits, Set<Obstacle> obstacles) {
         this.limits = limits;
         this.obstacles = obstacles;
     }
@@ -14,7 +22,7 @@ public class Grid {
         return limits;
     }
 
-    public GridObstacles getObstacles() {
-        return obstacles;
+    public boolean containsObstacleIn(GridLocation location) {
+        return obstacles.contains(new Obstacle(location));
     }
 }

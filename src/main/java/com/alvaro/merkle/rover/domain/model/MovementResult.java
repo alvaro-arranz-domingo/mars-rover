@@ -5,9 +5,9 @@ import java.util.Objects;
 public class MovementResult {
 
     private final boolean isSuccess;
-    private final GridLocation location;
+    private final RoverLocation location;
 
-    public MovementResult(boolean isSuccess, GridLocation location) {
+    public MovementResult(boolean isSuccess, RoverLocation location) {
         this.isSuccess = isSuccess;
         this.location = location;
     }
@@ -16,7 +16,7 @@ public class MovementResult {
         return isSuccess;
     }
 
-    public GridLocation getLocation() {
+    public RoverLocation getLocation() {
         return location;
     }
 

@@ -25,22 +25,22 @@ public class GridLimits {
         return width;
     }
 
-    public boolean isInsideLimits(GridLocation location) {
+    public boolean isInsideLimits(RoverLocation location) {
         return location.getX() >= 0
                 && location.getX() < getWidth()
                 && location.getY() >= 0
                 && location.getY() < getHeight();
     }
 
-    public GridLocation wrapLocation(GridLocation location) {
+    public RoverLocation wrapLocation(RoverLocation location) {
         if (location.getX() == getWidth())
-            return new GridLocation(0, location.getY(), location.getOrientation());
+            return new RoverLocation(0, location.getY(), location.getOrientation());
         else if (location.getX() < 0)
-            return new GridLocation(getWidth() - 1, location.getY(), location.getOrientation());
+            return new RoverLocation(getWidth() - 1, location.getY(), location.getOrientation());
         else if (location.getY() == getHeight())
-            return new GridLocation(location.getX(), 0, location.getOrientation());
+            return new RoverLocation(location.getX(), 0, location.getOrientation());
         else if (location.getY() < 0)
-            return new GridLocation(location.getX(), getHeight() - 1, location.getOrientation());
+            return new RoverLocation(location.getX(), getHeight() - 1, location.getOrientation());
 
         return location;
     }

@@ -2,19 +2,14 @@ package com.alvaro.merkle.rover.domain.model;
 
 import java.util.Objects;
 
-/**
- * Value object representing the location and orientation in a grid
- */
 public class GridLocation {
 
     private final int x;
     private final int y;
-    private final GridOrientation orientation;
 
-    public GridLocation(int x, int y, GridOrientation orientation) {
+    public GridLocation(int x, int y) {
         this.x = x;
         this.y = y;
-        this.orientation = orientation;
     }
 
     public int getX() {
@@ -25,16 +20,11 @@ public class GridLocation {
         return y;
     }
 
-    public GridOrientation getOrientation() {
-        return orientation;
-    }
-
     @Override
     public String toString() {
         return "GridLocation{" +
                 "x=" + x +
                 ", y=" + y +
-                ", orientation=" + orientation +
                 '}';
     }
 
@@ -44,12 +34,11 @@ public class GridLocation {
         if (o == null || getClass() != o.getClass()) return false;
         GridLocation that = (GridLocation) o;
         return x == that.x &&
-                y == that.y &&
-                orientation == that.orientation;
+                y == that.y;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y, orientation);
+        return Objects.hash(x, y);
     }
 }
