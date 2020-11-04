@@ -1,6 +1,5 @@
 package com.alvaro.merkle.rover.domain.usecases.commands;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 

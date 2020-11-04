@@ -1,21 +1,27 @@
 package com.alvaro.merkle.rover.domain.model;
 
+import com.alvaro.merkle.rover.domain.usecases.commands.RoverCommand;
+import com.alvaro.merkle.rover.domain.usecases.commands.RoverMovementCommand;
+import com.alvaro.merkle.rover.domain.usecases.commands.RoverRotationCommand;
 import org.junit.jupiter.api.Test;
+import reactor.test.StepVerifier;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RoverRotationTest {
 
     private final GridLimits grid = new GridLimits(5, 5);
+    private final RoverCommand rotateRightCommand = new RoverRotationCommand(true);
+    private final RoverCommand rotateLeftCommand = new RoverRotationCommand(false);
 
     @Test
     public void rotateRight_N() {
 
         var rover = new Rover(grid, new GridLocation(0,0, GridOrientation.N));
 
-        rover.rotateRight();
-
-        assertEquals(GridOrientation.E, rover.getCurrentLocation().getOrientation());
+        StepVerifier.create(rotateRightCommand.execute(rover))
+                .expectNext(new MovementResult(true, new GridLocation(0, 0, GridOrientation.E)))
+                .verifyComplete();
     }
 
     @Test
@@ -23,9 +29,9 @@ public class RoverRotationTest {
 
         var rover = new Rover(grid, new GridLocation(0,0, GridOrientation.E));
 
-        rover.rotateRight();
-
-        assertEquals(GridOrientation.S, rover.getCurrentLocation().getOrientation());
+        StepVerifier.create(rotateRightCommand.execute(rover))
+                .expectNext(new MovementResult(true, new GridLocation(0, 0, GridOrientation.S)))
+                .verifyComplete();
     }
 
     @Test
@@ -33,9 +39,9 @@ public class RoverRotationTest {
 
         var rover = new Rover(grid, new GridLocation(0,0, GridOrientation.S));
 
-        rover.rotateRight();
-
-        assertEquals(GridOrientation.W, rover.getCurrentLocation().getOrientation());
+        StepVerifier.create(rotateRightCommand.execute(rover))
+                .expectNext(new MovementResult(true, new GridLocation(0, 0, GridOrientation.W)))
+                .verifyComplete();
     }
 
     @Test
@@ -43,9 +49,9 @@ public class RoverRotationTest {
 
         var rover = new Rover(grid, new GridLocation(0,0, GridOrientation.W));
 
-        rover.rotateRight();
-
-        assertEquals(GridOrientation.N, rover.getCurrentLocation().getOrientation());
+        StepVerifier.create(rotateRightCommand.execute(rover))
+                .expectNext(new MovementResult(true, new GridLocation(0, 0, GridOrientation.N)))
+                .verifyComplete();
     }
 
     @Test
@@ -53,9 +59,9 @@ public class RoverRotationTest {
 
         var rover = new Rover(grid, new GridLocation(0,0, GridOrientation.N));
 
-        rover.rotateLeft();
-
-        assertEquals(GridOrientation.W, rover.getCurrentLocation().getOrientation());
+        StepVerifier.create(rotateLeftCommand.execute(rover))
+                .expectNext(new MovementResult(true, new GridLocation(0, 0, GridOrientation.W)))
+                .verifyComplete();
     }
 
     @Test
@@ -63,9 +69,9 @@ public class RoverRotationTest {
 
         var rover = new Rover(grid, new GridLocation(0,0, GridOrientation.E));
 
-        rover.rotateLeft();
-
-        assertEquals(GridOrientation.N, rover.getCurrentLocation().getOrientation());
+        StepVerifier.create(rotateLeftCommand.execute(rover))
+                .expectNext(new MovementResult(true, new GridLocation(0, 0, GridOrientation.N)))
+                .verifyComplete();
     }
 
     @Test
@@ -73,9 +79,9 @@ public class RoverRotationTest {
 
         var rover = new Rover(grid, new GridLocation(0,0, GridOrientation.S));
 
-        rover.rotateLeft();
-
-        assertEquals(GridOrientation.E, rover.getCurrentLocation().getOrientation());
+        StepVerifier.create(rotateLeftCommand.execute(rover))
+                .expectNext(new MovementResult(true, new GridLocation(0, 0, GridOrientation.E)))
+                .verifyComplete();
     }
 
     @Test
@@ -83,9 +89,9 @@ public class RoverRotationTest {
 
         var rover = new Rover(grid, new GridLocation(0,0, GridOrientation.W));
 
-        rover.rotateLeft();
-
-        assertEquals(GridOrientation.S, rover.getCurrentLocation().getOrientation());
+        StepVerifier.create(rotateLeftCommand.execute(rover))
+                .expectNext(new MovementResult(true, new GridLocation(0, 0, GridOrientation.S)))
+                .verifyComplete();
     }
 
 }

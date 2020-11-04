@@ -1,6 +1,8 @@
 package com.alvaro.merkle.rover.domain.usecases.commands;
 
+import com.alvaro.merkle.rover.domain.model.MovementResult;
 import com.alvaro.merkle.rover.domain.model.Rover;
+import reactor.core.publisher.Mono;
 
 public class RoverMovementCommand implements RoverCommand {
 
@@ -11,10 +13,10 @@ public class RoverMovementCommand implements RoverCommand {
     }
 
     @Override
-    public void execute(Rover rover) {
+    public Mono<MovementResult> execute(Rover rover) {
         if (isForward)
-            rover.moveForward();
+            return rover.moveForward();
         else
-            rover.moveBackwards();
+            return rover.moveBackwards();
     }
 }
