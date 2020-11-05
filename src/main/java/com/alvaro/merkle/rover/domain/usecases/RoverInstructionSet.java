@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 
 public class RoverInstructionSet {
 
-    static public Map<Character, Supplier<RoverCommand>> getInstructionSet() {
+     static public Map<Character, Supplier<RoverCommand>> getInstructionSet() {
         Map<Character, Supplier<RoverCommand>> instructions = new HashMap<>();
         instructions.put('f', () -> new RoverMovementCommand(true));
         instructions.put('b', () -> new RoverMovementCommand(false));
