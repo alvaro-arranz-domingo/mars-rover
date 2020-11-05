@@ -1,4 +1,6 @@
-package com.alvaro.merkle.rover.domain.model;
+package com.alvaro.merkle.rover.domain.model.grid;
+
+import com.alvaro.merkle.rover.domain.model.RoverLocation;
 
 import java.util.Objects;
 

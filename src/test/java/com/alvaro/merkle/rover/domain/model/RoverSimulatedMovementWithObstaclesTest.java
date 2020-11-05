@@ -1,5 +1,6 @@
 package com.alvaro.merkle.rover.domain.model;
 
+import com.alvaro.merkle.rover.domain.model.grid.*;
 import com.alvaro.merkle.rover.domain.usecases.commands.RoverCommand;
 import com.alvaro.merkle.rover.domain.usecases.commands.RoverMovementCommand;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +11,7 @@ import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class RoverMovementWithObstaclesTest {
+public class RoverSimulatedMovementWithObstaclesTest {
 
     private Grid grid;
     private final RoverCommand moveForwardCommand = new RoverMovementCommand(true);
@@ -28,7 +29,7 @@ public class RoverMovementWithObstaclesTest {
     @Test
     public void moveForwardToObstacle() {
         var roverLocation = new RoverLocation(2, 1, GridOrientation.N);
-        var rover = new Rover(grid, roverLocation);
+        var rover = new RoverSimulated(grid, roverLocation);
 
         StepVerifier.create(moveForwardCommand.execute(rover))
                 .expectNext(new MovementResult(false, roverLocation))
@@ -38,7 +39,7 @@ public class RoverMovementWithObstaclesTest {
     @Test
     public void moveBackwardToObstacle() {
         var roverLocation = new RoverLocation(1, 1, GridOrientation.E);
-        var rover = new Rover(grid, roverLocation);
+        var rover = new RoverSimulated(grid, roverLocation);
 
         StepVerifier.create(moveBackwardCommand.execute(rover))
                 .expectNext(new MovementResult(false, roverLocation))
@@ -49,6 +50,6 @@ public class RoverMovementWithObstaclesTest {
     public void roverStartPointInObstacle() {
         var roverLocation = new RoverLocation(2, 2, GridOrientation.N);
 
-        assertThrows(IllegalArgumentException.class, () -> new Rover(grid, roverLocation));
+        assertThrows(IllegalArgumentException.class, () -> new RoverSimulated(grid, roverLocation));
     }
 }

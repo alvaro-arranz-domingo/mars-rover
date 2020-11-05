@@ -1,5 +1,8 @@
 package com.alvaro.merkle.rover.domain.model;
 
+import com.alvaro.merkle.rover.domain.model.grid.GridLocation;
+import com.alvaro.merkle.rover.domain.model.grid.GridOrientation;
+
 import java.util.Objects;
 
 /**

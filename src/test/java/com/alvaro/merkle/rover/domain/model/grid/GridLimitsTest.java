@@ -1,5 +1,6 @@
-package com.alvaro.merkle.rover.domain.model;
+package com.alvaro.merkle.rover.domain.model.grid;
 
+import com.alvaro.merkle.rover.domain.model.grid.GridLimits;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

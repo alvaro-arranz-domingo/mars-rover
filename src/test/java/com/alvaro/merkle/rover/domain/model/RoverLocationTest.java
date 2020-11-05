@@ -1,5 +1,6 @@
 package com.alvaro.merkle.rover.domain.model;
 
+import com.alvaro.merkle.rover.domain.model.grid.GridOrientation;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

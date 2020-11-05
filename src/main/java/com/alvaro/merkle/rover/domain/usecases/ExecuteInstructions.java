@@ -1,8 +1,9 @@
 package com.alvaro.merkle.rover.domain.usecases;
 
-import com.alvaro.merkle.rover.domain.model.Grid;
+import com.alvaro.merkle.rover.domain.model.MovementResult;
+import com.alvaro.merkle.rover.domain.model.grid.Grid;
 import com.alvaro.merkle.rover.domain.model.RoverLocation;
-import com.alvaro.merkle.rover.domain.model.Rover;
+import com.alvaro.merkle.rover.domain.model.RoverSimulated;
 import com.alvaro.merkle.rover.domain.usecases.commands.RoverCommandFactory;
 import reactor.core.publisher.Flux;
 
@@ -14,15 +15,15 @@ public class ExecuteInstructions {
         this.commandFactory = commandFactory;
     }
 
-    public Flux<RoverLocation> execute(Grid grid, RoverLocation startLocation, Character[] instructions) {
+    public Flux<MovementResult> execute(Grid grid, RoverLocation startLocation, Character[] instructions) {
 
-        var rover = new Rover(grid, startLocation);
+        var rover = new RoverSimulated(grid, startLocation);
 
         return Flux.fromArray(instructions)
                 .map(i -> commandFactory.create(i))
-                .map(command -> {
-                    command.execute(rover);
-                    return rover.getCurrentLocation();
-                });
+                .flatMap(c -> c.execute(rover))
+                .takeUntil(r -> !r.isSuccess())
+                .limitRate(1)
+                .onErrorStop();
     }
 }

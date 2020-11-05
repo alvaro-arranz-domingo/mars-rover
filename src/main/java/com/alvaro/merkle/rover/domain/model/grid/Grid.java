@@ -1,4 +1,4 @@
-package com.alvaro.merkle.rover.domain.model;
+package com.alvaro.merkle.rover.domain.model.grid;
 
 import java.util.HashSet;
 import java.util.Set;

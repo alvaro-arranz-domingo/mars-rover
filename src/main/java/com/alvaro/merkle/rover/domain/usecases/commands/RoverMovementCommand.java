@@ -17,6 +17,6 @@ public class RoverMovementCommand implements RoverCommand {
         if (isForward)
             return rover.moveForward();
         else
-            return rover.moveBackwards();
+            return rover.moveBackward();
     }
 }
