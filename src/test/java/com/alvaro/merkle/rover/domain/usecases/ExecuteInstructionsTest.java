@@ -7,13 +7,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import reactor.test.StepVerifier;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class ExecuteInstructionsTest {
 
     private RoverCommandFactory commandFactory;
     private ExecuteInstructions executeInstructions;
-    private final Grid grid = new Grid(new GridLimits(5, 5));
+    private final Grid grid = new Grid(new GridLimits(5, 5), null);
     private Grid gridWithObstacles;
 
     @BeforeEach
@@ -21,7 +22,7 @@ public class ExecuteInstructionsTest {
         commandFactory = new RoverCommandFactory(RoverInstructionSet.getInstructionSet());
         executeInstructions = new ExecuteInstructions(commandFactory);
 
-        var obstacles = new HashSet<Obstacle>();
+        var obstacles = new ArrayList<Obstacle>();
         obstacles.add(new Obstacle(new GridLocation(2, 2)));
         obstacles.add(new Obstacle(new GridLocation(4, 2)));
 

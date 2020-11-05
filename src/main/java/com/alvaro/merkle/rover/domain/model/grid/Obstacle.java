@@ -4,7 +4,9 @@ import java.util.Objects;
 
 public class Obstacle {
 
-    private final GridLocation location;
+    private GridLocation location;
+
+    public Obstacle() {}
 
     public Obstacle(GridLocation location) {
         this.location = location;

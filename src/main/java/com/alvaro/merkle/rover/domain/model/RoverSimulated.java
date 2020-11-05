@@ -33,7 +33,48 @@ public class RoverSimulated implements Rover {
         return moveForward(-1);
     }
 
+    public Mono<MovementResult> rotateRight() {
+
+        switch (location.getOrientation()) {
+            case N:
+                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.E);
+                break;
+            case S:
+                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.W);
+                break;
+            case E:
+                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.S);
+                break;
+            case W:
+                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.N);
+                break;
+        }
+
+        return Mono.just(new MovementResult(true, location));
+    }
+
+    public Mono<MovementResult> rotateLeft() {
+
+        switch (location.getOrientation()) {
+            case N:
+                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.W);
+                break;
+            case S:
+                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.E);
+                break;
+            case E:
+                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.N);
+                break;
+            case W:
+                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.S);
+                break;
+        }
+
+        return Mono.just(new MovementResult(true, location));
+    }
+
     private Mono<MovementResult> moveForward(int direction) {
+
         RoverLocation newLocation = null;
 
         switch (location.getOrientation()) {
@@ -60,44 +101,6 @@ public class RoverSimulated implements Rover {
         }
 
         location = newLocation;
-
-        return Mono.just(new MovementResult(true, location));
-    }
-
-    public Mono<MovementResult> rotateRight() {
-        switch (location.getOrientation()) {
-            case N:
-                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.E);
-                break;
-            case S:
-                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.W);
-                break;
-            case E:
-                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.S);
-                break;
-            case W:
-                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.N);
-                break;
-        }
-
-        return Mono.just(new MovementResult(true, location));
-    }
-
-    public Mono<MovementResult> rotateLeft() {
-        switch (location.getOrientation()) {
-            case N:
-                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.W);
-                break;
-            case S:
-                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.E);
-                break;
-            case E:
-                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.N);
-                break;
-            case W:
-                location = new RoverLocation(location.getX(), location.getY(), GridOrientation.S);
-                break;
-        }
 
         return Mono.just(new MovementResult(true, location));
     }

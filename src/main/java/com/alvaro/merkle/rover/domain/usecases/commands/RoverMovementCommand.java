@@ -19,4 +19,11 @@ public class RoverMovementCommand implements RoverCommand {
         else
             return rover.moveBackward();
     }
+
+    @Override
+    public String toString() {
+        return "RoverMovementCommand{" +
+                "isForward=" + isForward +
+                '}';
+    }
 }

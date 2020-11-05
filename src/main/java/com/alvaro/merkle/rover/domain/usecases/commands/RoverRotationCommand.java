@@ -19,4 +19,11 @@ public class RoverRotationCommand implements RoverCommand {
         else
             return rover.rotateLeft();
     }
+
+    @Override
+    public String toString() {
+        return "RoverRotationCommand{" +
+                "isRight=" + isRight +
+                '}';
+    }
 }

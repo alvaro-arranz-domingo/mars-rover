@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import reactor.test.StepVerifier;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -19,7 +19,7 @@ public class RoverSimulatedMovementWithObstaclesTest {
 
     @BeforeEach
     public void setUp() {
-        var obstacles = new HashSet<Obstacle>();
+        var obstacles = new ArrayList<Obstacle>();
         obstacles.add(new Obstacle(new GridLocation(2, 2)));
         obstacles.add(new Obstacle(new GridLocation(0, 1)));
 
