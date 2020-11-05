@@ -9,6 +9,11 @@ public class Grid {
     private final GridLimits limits;
     private final Set<Obstacle> obstacles;
 
+    public Grid(GridLimits limits) {
+        this.limits = limits;
+        this.obstacles = new HashSet<>();
+    }
+
     public Grid(GridLimits limits, ArrayList<Obstacle> obstacles) {
         this.limits = limits;
         this.obstacles = new HashSet<>(obstacles);

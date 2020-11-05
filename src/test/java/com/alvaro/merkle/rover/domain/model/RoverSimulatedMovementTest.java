@@ -10,7 +10,7 @@ import reactor.test.StepVerifier;
 
 public class RoverSimulatedMovementTest {
 
-    private Grid grid = new Grid(new GridLimits(5, 5), null);
+    private Grid grid = new Grid(new GridLimits(5, 5));
     private final RoverCommand moveForwardCommand = new RoverMovementCommand(true);
     private final RoverCommand moveBackwardCommand = new RoverMovementCommand(false);
 

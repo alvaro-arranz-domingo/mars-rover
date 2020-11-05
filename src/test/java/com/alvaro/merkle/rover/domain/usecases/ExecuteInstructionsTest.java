@@ -1,6 +1,7 @@
 package com.alvaro.merkle.rover.domain.usecases;
 
 import com.alvaro.merkle.rover.domain.model.*;
+import com.alvaro.merkle.rover.domain.model.factories.RoverSimulatedFactory;
 import com.alvaro.merkle.rover.domain.model.grid.*;
 import com.alvaro.merkle.rover.domain.usecases.commands.RoverCommandFactory;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,19 +9,18 @@ import org.junit.jupiter.api.Test;
 import reactor.test.StepVerifier;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class ExecuteInstructionsTest {
 
     private RoverCommandFactory commandFactory;
     private ExecuteInstructions executeInstructions;
-    private final Grid grid = new Grid(new GridLimits(5, 5), null);
+    private final Grid grid = new Grid(new GridLimits(5, 5));
     private Grid gridWithObstacles;
 
     @BeforeEach
     public void setUp() {
         commandFactory = new RoverCommandFactory(RoverInstructionSet.getInstructionSet());
-        executeInstructions = new ExecuteInstructions(commandFactory);
+        executeInstructions = new ExecuteInstructions(commandFactory, new RoverSimulatedFactory());
 
         var obstacles = new ArrayList<Obstacle>();
         obstacles.add(new Obstacle(new GridLocation(2, 2)));
