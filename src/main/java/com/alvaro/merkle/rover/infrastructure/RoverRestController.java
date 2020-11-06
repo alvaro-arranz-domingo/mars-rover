@@ -2,11 +2,10 @@ package com.alvaro.merkle.rover.infrastructure;
 
 import com.alvaro.merkle.rover.domain.model.MovementResult;
 import com.alvaro.merkle.rover.domain.usecases.ExecuteInstructions;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
 @RestController
@@ -25,5 +24,11 @@ public class RoverRestController {
                 instructionsDTO.grid,
                 instructionsDTO.startLocation,
                 instructionsDTO.instructions.chars().mapToObj(c -> (char)c).toArray(Character[]::new));
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handle(IllegalArgumentException ex) {
+        return ex.getMessage();
     }
 }
