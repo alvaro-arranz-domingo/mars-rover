@@ -61,3 +61,10 @@ Instructions with a grid with obstacles:
 
 ```
 
+# Pending Improvements
+
+If I had more time, I would have improved:
+
+- Functional tests. Testing the endpoint directly with a http client;
+- Refactoring, improve implementation of RoverSimulated class
+- Save results in a database such as mongodb
